@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blueGrey,
       ),
       home: LoginWidget(),
       routes: {
-        '/auth' : (context) => LoginWidget(),
-        '/main_screen' : (context) => MainScreenWidget(),
+        '/auth': (context) => LoginWidget(),
+        '/main_screen': (context) => MainScreenWidget(),
       },
     );
   }
