@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vndb/widgets/vn_search/vn_card_widget.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({Key? key}) : super(key: key);
@@ -7,13 +8,11 @@ class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: 10,
-      itemExtent: 170,
+      itemExtent: 180,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            color: Colors.red,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+          child: CardWidget(),
         );
       },
     );

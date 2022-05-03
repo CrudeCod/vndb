@@ -17,7 +17,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   }
 
   final List<Widget> widgetList = [
-    Text('Home'),
+    Image(image: AssetImage('images/sample.jpg')),
     SearchWidget(),
     Text('My List')
   ];

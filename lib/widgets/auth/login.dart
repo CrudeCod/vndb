@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../main_screen/main_screen.dart';
@@ -32,19 +31,18 @@ class _LoginFields extends StatefulWidget {
 }
 
 class _LoginFieldsState extends State<_LoginFields> {
-  final _loginTextController = TextEditingController(
-  );
-  final _passwordTextController = TextEditingController();
+  final _loginTextController = TextEditingController(text: 'admin');
+  final _passwordTextController = TextEditingController(text: 'admin');
   final _loginFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   String errorText = '';
 
-  void _auth(){
-    if(_loginTextController.text == 'admin' && _passwordTextController.text == 'admin'){
+  void _auth() {
+    if (_loginTextController.text == 'admin' &&
+        _passwordTextController.text == 'admin') {
       errorText = 'Logged in!';
       Navigator.of(context).pushReplacementNamed('/main_screen');
-    }
-    else {
+    } else {
       errorText = 'Wrong login or password!';
     }
     setState(() {});
@@ -54,32 +52,35 @@ class _LoginFieldsState extends State<_LoginFields> {
   Widget build(BuildContext context) {
     errorText = this.errorText;
     final inputDecoration = InputDecoration(
-      isCollapsed: true,
-      border: OutlineInputBorder(
+        isCollapsed: true,
+        border: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey, width: 3),
           borderRadius: BorderRadius.circular(7.0),
-      ),
-      focusColor: Colors.blue,
-      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10)
-    );
+        ),
+        focusColor: Colors.blue,
+        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         Text('Login'),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         TextField(
           decoration: inputDecoration,
           obscureText: false,
           controller: _loginTextController,
           focusNode: _loginFocusNode,
           textInputAction: TextInputAction.next,
-
         ),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         Text('Password'),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         TextField(
           decoration: inputDecoration,
           obscureText: true,
@@ -88,16 +89,25 @@ class _LoginFieldsState extends State<_LoginFields> {
           textInputAction: TextInputAction.done,
           onEditingComplete: _auth,
         ),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         Row(
           children: [
-            ElevatedButton(onPressed: _auth, child: Text('Login'),),
-            SizedBox(width: 20,),
-            TextButton(onPressed: () {}, child: Text('Reset password'),)
+            ElevatedButton(
+              onPressed: _auth,
+              child: Text('Login'),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text('Reset password'),
+            )
           ],
         ),
         Text(errorText),
-
       ],
     );
   }
