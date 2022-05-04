@@ -1,8 +1,24 @@
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({Key? key}) : super(key: key);
+  Novel novel;
+  late String title = '';
+  late String date = '';
+  late String description = '';
+  late String image = '';
+  // ignore: use_key_in_widget_constructors
+  CardWidget(
+    this.novel, {
+    Key? key,
+  }) {
+    title = novel.name;
+    date = novel.date;
+    description = novel.description;
+    image = novel.image;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +31,7 @@ class CardWidget extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(200),
+            color: Colors.black.withAlpha(65),
             offset: Offset(0, 10),
             blurRadius: 20.0,
           )
@@ -25,7 +41,7 @@ class CardWidget extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'images/sample.jpg',
+            image,
             fit: BoxFit.cover,
           ),
           ClipRRect(
@@ -42,7 +58,7 @@ class CardWidget extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'Subarashiki Hibi',
+                      title,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -52,7 +68,7 @@ class CardWidget extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'March 26, 2010',
+                      date,
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
                           color: Colors.white54,
@@ -62,7 +78,7 @@ class CardWidget extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'Subarashiki Hibi is a story told in seven chapters. The story follows a group of several Tokyo high school students mostly through July of 2012 and each chapter is told from the perspective of one of its five main characters...',
+                      description,
                       maxLines: 5,
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
@@ -78,4 +94,17 @@ class CardWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class Novel {
+  final String name;
+  final String date;
+  final String description;
+  final String image;
+
+  Novel(
+      {required this.name,
+      required this.date,
+      required this.description,
+      required this.image});
 }
