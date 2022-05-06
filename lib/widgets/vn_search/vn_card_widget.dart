@@ -90,6 +90,11 @@ class CardWidget extends StatelessWidget {
               ),
             ),
           ),
+          InkWell(
+            onTap: () {
+              print("card tapped");
+            },
+          ),
         ],
       ),
     );

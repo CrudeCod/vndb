@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vndb/rating_circle.dart';
 import 'package:vndb/widgets/vn_search/search_widget.dart';
 
 class MainScreenWidget extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   }
 
   final List<Widget> widgetList = [
-    Image(image: AssetImage('images/sample.jpg')),
+    RatingCircleWidget(),
     SearchWidget(),
     Text('My List')
   ];
