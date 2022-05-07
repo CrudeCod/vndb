@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class CardWidget extends StatelessWidget {
+class CardWidget extends StatefulWidget {
   Novel novel;
   late String title = '';
   late String date = '';
@@ -14,10 +14,20 @@ class CardWidget extends StatelessWidget {
     this.novel, {
     Key? key,
   }) {
-    title = novel.name;
+    title = novel.title;
     date = novel.date;
     description = novel.description;
     image = novel.image;
+  }
+
+  @override
+  State<CardWidget> createState() => _CardWidgetState();
+}
+
+class _CardWidgetState extends State<CardWidget> {
+  void _onNovelCardClick(int id) {
+    Navigator.of(context).pushNamed('/main_screen/vn_page', arguments: id);
+    setState(() {});
   }
 
   @override
@@ -41,7 +51,7 @@ class CardWidget extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            image,
+            widget.image,
             fit: BoxFit.cover,
           ),
           ClipRRect(
@@ -58,7 +68,7 @@ class CardWidget extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      title,
+                      widget.title,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -68,7 +78,7 @@ class CardWidget extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      date,
+                      widget.date,
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
                           color: Colors.white54,
@@ -78,7 +88,7 @@ class CardWidget extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      description,
+                      widget.description,
                       maxLines: 5,
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
@@ -91,9 +101,7 @@ class CardWidget extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {
-              print("card tapped");
-            },
+            onTap: () => _onNovelCardClick(widget.novel.id),
           ),
         ],
       ),
@@ -102,13 +110,14 @@ class CardWidget extends StatelessWidget {
 }
 
 class Novel {
-  final String name;
+  final String title;
   final String date;
   final String description;
   final String image;
-
+  final int id;
   Novel(
-      {required this.name,
+      {required this.id,
+      required this.title,
       required this.date,
       required this.description,
       required this.image});
